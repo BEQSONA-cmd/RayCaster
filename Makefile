@@ -4,7 +4,7 @@ CC = cc
 LFLAGS = -L./includes/mlx -lmlx -lXext -lX11 -lm -lz 
 INCLUDE = includes/libft/libft.a includes/mlx/libmlx.a
 
-SRC = src/main.c
+SRC = src/main.c src/player.c
 OBJ = $(SRC:.c=.o)
 
 
