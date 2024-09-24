@@ -84,37 +84,37 @@ void draw_map(t_game *game)
                 draw_square(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, color, game);
 }
 
-int key_press(int keycode, t_game *game)
+int key_press(int keycode, t_player *player)
 {
     if (keycode == W)
-        game->player.key_up = true;
+        player->key_up = true;
     if (keycode == S)
-        game->player.key_down = true;
+        player->key_down = true;
     if (keycode == A)
-        game->player.key_left = true;
+        player->key_left = true;
     if (keycode == D)
-        game->player.key_right = true;
+        player->key_right = true;
     if (keycode == LEFT)
-        game->player.key_left_rotate = true;
+        player->key_left_rotate = true;
     if (keycode == RIGHT)
-        game->player.key_right_rotate = true;
+        player->key_right_rotate = true;
     return (0);
 }
 
-int key_release(int keycode, t_game *game)
+int key_release(int keycode, t_player *player)
 {
     if (keycode == W)
-        game->player.key_up = false;
+        player->key_up = false;
     if (keycode == S)
-        game->player.key_down = false;
+        player->key_down = false;
     if (keycode == A)
-        game->player.key_left = false;
+        player->key_left = false;
     if (keycode == D)
-        game->player.key_right = false;
+        player->key_right = false;
     if (keycode == LEFT)
-        game->player.key_left_rotate = false;
+        player->key_left_rotate = false;
     if (keycode == RIGHT)
-        game->player.key_right_rotate = false;
+        player->key_right_rotate = false;
     return (0);
 }
 
@@ -185,8 +185,8 @@ int main(void)
     t_game game;
     init_game(&game);
 
-    mlx_hook(game.win, 2, 1L<<0, key_press, &game);
-    mlx_hook(game.win, 3, 1L<<1, key_release, &game);
+    mlx_hook(game.win, 2, 1L<<0, key_press, &game.player);
+    mlx_hook(game.win, 3, 1L<<1, key_release, &game.player);
     mlx_loop_hook(game.mlx, draw_loop, &game);
 
     mlx_loop(game.mlx);
