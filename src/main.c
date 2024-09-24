@@ -12,7 +12,7 @@ void put_pixel(int x, int y, int color, t_game *render_game)
     render_game->data[index + 2] = (color >> 16) & 0xFF;
 }
 
-bool is_touching(float px, float py, const t_game *game)
+bool is_touching(float px, float py, t_game *game)
 {
 	int x = px / BLOCK_SIZE;
 	int y = py / BLOCK_SIZE;
@@ -35,37 +35,11 @@ int draw_square(int x, int y, int size, int color, t_game *render_game)
     return (0);
 }
 
-void clear_image(t_game *game, int color)
+void clear_image(t_game *game)
 {
     for (int y = 0; y < HEIGHT; y++)
-    {
         for (int x = 0; x < WIDTH; x++)
-        {
-            put_pixel(x, y, color, game);
-        }
-    }
-}
-
-int draw_game(t_player *player, t_game *game)
-{
-    int size = 5;
-    int color = 0x00FF00;
-    draw_square(player->x, player->y, size, color, game);
-    draw_map(game);
-    float cos_angle = cos(player->angle);
-    float sin_angle = sin(player->angle);
-    float ray_x = player->x + cos_angle;
-    float ray_y = player->y + sin_angle;
-
-    while (!is_touching(ray_x, ray_y, game))
-    {
-        put_pixel(ray_x, ray_y, 0xFF0000, game);
-        ray_x += cos_angle;
-        ray_y += sin_angle;
-    }
-
-
-    return (0);
+            put_pixel(x, y, 0x000000, game);
 }
 
 char **get_map(void)
@@ -75,7 +49,7 @@ char **get_map(void)
     map[1] = ft_strdup("100000000000001");
     map[2] = ft_strdup("100000000000001");
     map[3] = ft_strdup("100000000000001");
-    map[4] = ft_strdup("100000000000001");
+    map[4] = ft_strdup("100000010000001");
     map[5] = ft_strdup("100000000000001");
     map[6] = ft_strdup("100000000000001");
     map[7] = ft_strdup("100000000000001");
@@ -90,15 +64,9 @@ void draw_map(t_game *game)
     char **map = game->map;
     int color = 0x0000FF;
     for (int y = 0; map[y]; y++)
-    {
         for (int x = 0; map[y][x]; x++)
-        {
             if (map[y][x] == '1')
-            {
                 draw_square(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, color, game);
-            }
-        }
-    }
 }
 
 void init_game(t_game *game)
@@ -156,7 +124,7 @@ int main()
 
     mlx_hook(game.win, 2, 1L<<0, key_press, &game);
     mlx_hook(game.win, 3, 1L<<1, key_release, &game);
-    mlx_loop_hook(game.mlx, move_player, &game);
+    mlx_loop_hook(game.mlx, draw_loop, &game);
 
     mlx_loop(game.mlx);
     return (0);
