@@ -7,7 +7,6 @@ INCLUDE = includes/libft/libft.a includes/mlx/libmlx.a
 SRC = src/main.c src/player.c
 OBJ = $(SRC:.c=.o)
 
-
 all: $(NAME)
 
 lib:

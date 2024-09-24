@@ -49,14 +49,7 @@ typedef struct s_game
     t_player player;
 } t_game;
 
-
-void clear_image(t_game *game);
-int draw_square(int x, int y, int size, int color, t_game *game);
-
 void init_player(t_player *player);
-int move_player(t_game *game);
-int draw_loop(t_game *game);
-void put_pixel(int x, int y, int color, t_game *render_game);
-void draw_map(t_game *game);
-bool is_touching(float x, float y, t_game *game);
+void move_player(t_player *player);
+
 #endif
