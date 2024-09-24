@@ -11,8 +11,12 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 lib:
+	@if [ ! -d "includes/mlx" ]; then \
+		git clone https://github.com/42Paris/minilibx-linux.git ./includes/mlx; \
+	fi
 	make -C includes/libft/
 	make -C includes/mlx/
+
 fclean_lib:
 	make fclean -C includes/libft/
 	make clean -C includes/mlx/
