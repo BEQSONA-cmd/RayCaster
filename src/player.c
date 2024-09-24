@@ -2,8 +2,8 @@
 
 void init_player(t_player *player)
 {
-    player->x = WIDTH / 2;
-    player->y = HEIGHT / 2;
+    player->x = 2 * BLOCK_SIZE;
+    player->y = 2 * BLOCK_SIZE;
     player->angle = PI / 2;
 
     player->key_up = false;
