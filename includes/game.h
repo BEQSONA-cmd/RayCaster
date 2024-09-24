@@ -1,6 +1,12 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "./mlx/mlx.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <math.h>
+
 # define WIDTH 1280
 # define HEIGHT 720
 # define BLOCK_SIZE 64
@@ -12,12 +18,6 @@
 # define LEFT 65361
 # define RIGHT 65363
 # define PI 3.14159265359
-
-#include "./libft/libft.h"
-#include "./mlx/mlx.h"
-#include <stdio.h>
-#include <stdbool.h>
-#include <math.h>
 
 typedef struct s_player
 {
