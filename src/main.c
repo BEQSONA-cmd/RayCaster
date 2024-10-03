@@ -136,7 +136,6 @@ int draw_loop(t_game *game)
         draw_square(player->x, player->y, 10, 0x00FF00, game);
         draw_map(game);
     }
-
     float fraction = PI / 3 / WIDTH;
     float start_x = player->angle - PI / 6;
     int i = 0;
@@ -146,8 +145,8 @@ int draw_loop(t_game *game)
         start_x += fraction;
         i++;
     }
-
     mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+    return 0;
 }
 
 int main(void)

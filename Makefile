@@ -8,6 +8,10 @@ SRC = src/main.c src/player.c
 
 all: $(NAME)
 
+mlx:
+	git clone https://github.com/42Paris/minilibx-linux.git ./includes/mlx
+	make -C ./includes/mlx
+
 $(NAME): $(OBJ)
 	$(CC) $(SRC) -o $(NAME) $(INCLUDES) $(LFLAGS)
 
